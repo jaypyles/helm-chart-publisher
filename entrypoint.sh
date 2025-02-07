@@ -42,8 +42,8 @@ git push origin "$BRANCH"
 # Push the updated version to the source repository
 echo "Pushing updated version to the source repository..."
 git config --global --add safe.directory /github/workspace
-git config user.name "GitHub Actions"
-git config user.email "github-actions@github.com"
+git config --global user.name "GitHub Actions"
+git config --global user.email "github-actions@github.com"
 
 cd $GITHUB_WORKSPACE
 git add "$CHART_PATH/Chart.yaml" "$CHART_PATH/values.yaml"
