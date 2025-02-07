@@ -1,0 +1,39 @@
+name: "Helm Chart Publisher"
+description: "Packages and publishes a Helm chart to a Private Helm Repository on GitHub"
+author: "Jayden Pyles"
+
+inputs:
+  chart_path:
+    description: "Path to the Helm chart directory"
+    required: true
+  helm_repo_url:
+    description: "Helm repository URL"
+    required: true
+  target_repo:
+    description: "GitHub repository to push charts (e.g., owner/repo)"
+    required: true
+  branch:
+    description: "Branch to push changes"
+    required: false
+    default: "main"
+  chart_name:
+    description: "Name of the Helm chart"
+    required: true
+  github_token:
+    description: "GitHub Personal Access Token with repo permissions"
+    required: true
+  new_version:
+    description: "New version of the Helm chart"
+    required: true
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.chart_path }}
+    - ${{ inputs.helm_repo_url }}
+    - ${{ inputs.target_repo }}
+    - ${{ inputs.branch }}
+    - ${{ inputs.chart_name }}
+    - ${{ inputs.github_token }}
+    - ${{ inputs.new_version }}
