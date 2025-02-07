@@ -37,7 +37,7 @@ cp ../artifacts/index.yaml charts/$CHART_NAME/
 echo "Committing and pushing changes..."
 git add charts/
 git commit -m "Add new $CHART_NAME chart version and update index.yaml"
-git push origin "$BRANCH"
+git push origin main
 
 # Push the updated version to the source repository
 echo "Pushing updated version to the source repository..."
