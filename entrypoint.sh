@@ -42,11 +42,11 @@ git push origin main
 # Push the updated version to the source repository
 echo "Pushing updated version to the source repository..."
 git config --global --add safe.directory /github/workspace
-git config --global user.name "GitHub Actions"
-git config --global user.email "github-actions@github.com"
+git config --global user.name "github-actions[bot]"
+git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
 cd $GITHUB_WORKSPACE
 git add "$CHART_PATH/Chart.yaml" "$CHART_PATH/values.yaml"
 git commit -m "Update version [skip ci]"
-git remote set-url origin "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 git push origin "$BRANCH"
