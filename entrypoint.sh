@@ -7,8 +7,7 @@ HELM_REPO_URL=$2
 TARGET_REPO=$3
 BRANCH=$4
 CHART_NAME=$5
-GPAT_TOKEN=$6
-NEW_VERSION=$7
+NEW_VERSION=$6
 
 echo "Updating version in source repository..."
 sed -i "s/^version:.*/version: $NEW_VERSION/" charts/$CHART_NAME/Chart.yaml
@@ -22,7 +21,7 @@ echo "Updating Helm repo index..."
 helm repo index artifacts/ --url "$HELM_REPO_URL/main/charts/$CHART_NAME"
 
 echo "Cloning target repo..."
-git clone https://${GPAT_TOKEN}@github.com/${TARGET_REPO}.git
+git clone https://${GITHUB_TOKEN}@github.com/${TARGET_REPO}.git
 cd "$(basename "$TARGET_REPO")"
 
 echo "Configuring Git..."
@@ -48,4 +47,4 @@ git config --global user.email "github-actions@github.com"
 cd $GITHUB_WORKSPACE
 git add "$CHART_PATH/Chart.yaml" "$CHART_PATH/values.yaml"
 git commit -m "Update version [skip ci]"
-git push "https://x-access-token:${GPAT_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$BRANCH"
+git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$BRANCH"

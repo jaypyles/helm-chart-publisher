@@ -19,9 +19,6 @@ inputs:
   chart_name:
     description: "Name of the Helm chart"
     required: true
-  github_token:
-    description: "GitHub Personal Access Token with repo permissions"
-    required: true
   new_version:
     description: "New version of the Helm chart"
     required: true
@@ -35,5 +32,4 @@ runs:
     - ${{ inputs.target_repo }}
     - ${{ inputs.branch }}
     - ${{ inputs.chart_name }}
-    - ${{ inputs.github_token }}
     - ${{ inputs.new_version }}
