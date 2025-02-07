@@ -48,5 +48,4 @@ git config --global user.email "github-actions[bot]@users.noreply.github.com"
 cd $GITHUB_WORKSPACE
 git add "$CHART_PATH/Chart.yaml" "$CHART_PATH/values.yaml"
 git commit -m "Update version [skip ci]"
-git remote set-url origin "https://x-access-token:${GPAT_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-git push origin "$BRANCH"
+git push "https://x-access-token:${GPAT_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$BRANCH"
