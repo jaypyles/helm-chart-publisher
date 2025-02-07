@@ -22,6 +22,9 @@ inputs:
   new_version:
     description: "New version of the Helm chart"
     required: true
+  gpat_token:
+    description: "GitHub Personal Access Token with repo permissions"
+    required: true
 
 runs:
   using: "docker"
@@ -32,4 +35,5 @@ runs:
     - ${{ inputs.target_repo }}
     - ${{ inputs.branch }}
     - ${{ inputs.chart_name }}
+    - ${{ inputs.gpat_token }}
     - ${{ inputs.new_version }}
