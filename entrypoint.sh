@@ -45,6 +45,7 @@ git config user.name "GitHub Actions"
 git config user.email "github-actions@github.com"
 
 cd $GITHUB_WORKSPACE
+ls -la 
 git add "$CHART_PATH/Chart.yaml" "$CHART_PATH/values.yaml"
 git commit -m "Update version [skip ci]"
 git push origin "$BRANCH"
