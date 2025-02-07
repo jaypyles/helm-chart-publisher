@@ -21,7 +21,7 @@ echo "Updating Helm repo index..."
 helm repo index artifacts/ --url "$HELM_REPO_URL/main/charts/$CHART_NAME"
 
 echo "Cloning target repo..."
-git clone https://${GITHUB_TOKEN}@github.com/${TARGET_REPO}.git
+git clone "https://x-access-token:${GITHUB_TOKEN}@github.com/${TARGET_REPO}.git"
 cd "$(basename "$TARGET_REPO")"
 
 echo "Configuring Git..."
