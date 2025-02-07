@@ -10,6 +10,9 @@ CHART_NAME=$5
 GITHUB_TOKEN=$6
 NEW_VERSION=$7
 
+echo "Updating version in source repository..."
+sed -i "s/^version:.*/version: $NEW_VERSION/" charts/$CHART_NAME/Chart.yaml
+
 echo "Packaging Helm Chart..."
 helm package "$CHART_PATH"
 mkdir -p artifacts
@@ -36,12 +39,12 @@ git add charts/
 git commit -m "Add new $CHART_NAME chart version and update index.yaml"
 git push origin "$BRANCH"
 
-echo "Updating version in source repository..."
-sed -i "s/^version:.*/version: $NEW_VERSION/" charts/$CHART_NAME/Chart.yaml
-
 # Push the updated version to the source repository
+echo "Pushing updated version to the source repository..."
 git config user.name "GitHub Actions"
 git config user.email "github-actions@github.com"
+
+cd ..
 git add "$CHART_PATH/Chart.yaml" "$CHART_PATH/values.yaml"
 git commit -m "Update version [skip ci]"
 git push origin "$BRANCH"
